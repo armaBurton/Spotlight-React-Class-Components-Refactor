@@ -52,7 +52,6 @@ export default class BeanieDetail extends Component {
     
     this.state = { 
       beanieBaby: {},
-      ___stateBeanBaby: {}
     };
     // console.log(beanieBaby);
   } 
@@ -61,15 +60,33 @@ export default class BeanieDetail extends Component {
     const windowData = window.location;
     const split = windowData.href.split('/');
     const count = split.length - 1;
-    const beanie = await getSingleBeanie(split[count]);
-    this.setState({ beanieBaby: { beanie } });
+    const id = split[count];
+    const beanieBaby = await getSingleBeanie(id);
+    this.setState({ beanieBaby: { beanieBaby } });
+    this.render();
   }
-
   
   render() {
+    
     const { beanieBaby } = this.state;
-    console.log(beanieBaby.beanie);
-  
+    if (beanieBaby.beanieBaby === undefined){
+      console.log(`wait`);
+    } else {
+      console.log(beanieBaby);
+      return <Link to={`/`}>
+        <div className='bean-holder'>
+          <img className='detail-image' src={beanieBaby.beanieBaby.image} alt={beanieBaby.beanieBaby.title} />
+          <div className='bean-card'>
+            <h2 className='title'>{beanieBaby.beanieBaby.title}</h2>
+            <p className='zodiac'>Zodiac: {beanieBaby.beanieBaby.astroSign}</p>
+            <p className="born">Born: {beanieBaby.beanieBaby.birthday}</p>
+            <p className="release-date">Release Date: {beanieBaby.beanieBaby.releaseDate}</p>
+            <p className="style-number">Styling Number: {beanieBaby.beanieBaby.styleNumber}</p>
+          </div>
+        </div>
+      </Link>;
+    }
     return <></>;
   }
 }
+
