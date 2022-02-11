@@ -27,6 +27,7 @@ export default class BeanieDetail extends Component {
     
     const { beanieBaby } = this.state;
     if (beanieBaby.beanieBaby === undefined){
+      <></>;
     } else {
       return <Link to={`/`}>
         <div className='bean-holder'>
