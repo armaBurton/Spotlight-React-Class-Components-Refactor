@@ -27,5 +27,4 @@ export async function getSingleBeanie(id) {
     .single();
 
   return checkError(response);
-
 }
