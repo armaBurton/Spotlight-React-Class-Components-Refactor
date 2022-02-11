@@ -1,30 +1,31 @@
 import { client, checkError } from './client';
 
-export async function getCharacters(from = 1, to = 30, search) {
+export async function getBeanieBabies(from = 0, to = 30, search) {
   if (!search){
     const response = await client
-      .from(`characters`)
+      .from('beanie_babies')
       .select()
       .range(from, to);
-  
+
     return checkError(response);
   } else {
     const response = await client
-      .from(`characters`)
+      .from(`beanie_babies`)
       .select()
       .range(from, to)
-      .ilike(`name`, `%${search}`);
-
+      .ilike(`title`, `%${search}`);
+    
     return checkError(response);
   }
 }
 
-export async function getSingleCharacter(id) {
+export async function getSingleBeanie(id) {
   const response = await client
-    .from(`characters`)
+    .from('beanie_babies')
     .select()
     .match({ id })
     .single();
 
   return checkError(response);
+
 }
