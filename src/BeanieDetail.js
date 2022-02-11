@@ -47,30 +47,28 @@ import { Component } from 'react';
 
 
 export default class BeanieDetail extends Component {
-  
-  
   constructor() {
     super();
     
-    this.setState = { 
+    this.state = { 
       beanieBaby: {},
       ___stateBeanBaby: {}
     };
+    // console.log(beanieBaby);
   } 
 
   async componentDidMount() {
-    let windowData = window.location;
-    let split = windowData.href.split('/');
-    let count = split.length - 1;
+    const windowData = window.location;
+    const split = windowData.href.split('/');
+    const count = split.length - 1;
     const beanie = await getSingleBeanie(split[count]);
-    this.setState({});
-    console.log(beanie);
+    this.setState({ beanieBaby: { beanie } });
   }
 
   
   render() {
-    // const { beanie } = this.props.location.search;
-    // console.log(beanie);
+    const { beanieBaby } = this.state;
+    console.log(beanieBaby.beanie);
   
     return <></>;
   }
